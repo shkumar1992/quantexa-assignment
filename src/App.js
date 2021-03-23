@@ -1,25 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { withStyles } from '@material-ui/core/styles';
+import CssBaseline from '@material-ui/core/CssBaseline';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import ApplicationBar from './components/ApplicationBar';
+import Dashboard from './pages/Dashboard';
+
+const styles = (theme) => ({
+  root: {
+    display: 'flex',
+  },
+  appBarSpacer: theme.mixins.toolbar,
+  content: {
+    flexGrow: 1,
+    height: '100vh',
+    overflow: 'auto',
+  }
+});
+
+class App extends React.Component {
+  render() {
+    const {classes} = this.props;
+
+    return (
+      <div className={classes.root}>
+        <CssBaseline />
+        <ApplicationBar name="Dashboard" avatarInitials="SK" />
+        <main className={classes.content}>
+          <div className={classes.appBarSpacer} />
+          <Dashboard />
+        </main>
+      </div>
+    );
+  }
 }
 
-export default App;
+export default withStyles(styles)(App);
